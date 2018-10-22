@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 71f8c12dc8c1e1b4599400d53f8795a6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - obj_players_ship: {fileID: 4281623855035814, guid: 12f521b2efc2cea46b4d20f83d9a169a,
+      type: 2}
+  - obj_planet: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
