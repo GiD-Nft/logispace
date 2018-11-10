@@ -32,6 +32,9 @@ public class scr_players_ship : MonoBehaviour
             Control.playerNeedToFly = false;//Выключаем, если дошли
             Control.buttonPlay = false; // Снова всё останавливается
             Debug.Log("Горит красный свет. Все стоят (Нажмите Play)");
+
+            // Приземление на планету.
+            GameObject.Find("Main Camera").GetComponent<scr_landing>().Landing();
         }
     }
 }

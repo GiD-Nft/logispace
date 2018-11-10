@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 758752681}
   - component: {fileID: 758752684}
   - component: {fileID: 758752685}
+  - component: {fileID: 758752686}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -163,7 +164,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.675768
+  orthographic size: 2.5602503
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -187,7 +188,7 @@ Transform:
   m_GameObject: {fileID: 758752680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.75, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -222,6 +223,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5866501d16e967d46acc5ea6c3e32886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &758752686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758752680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251305ad0ed76f743a6b57760e48d4cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bkg_land_white: {fileID: 4218194732107306, guid: 321e18d4a105aed4582f83a2359b0789,
+    type: 2}
+  buttons:
+  - {fileID: 4507910454548654, guid: 2445b5f29d456b44d89d821387158d80, type: 2}
+  - {fileID: 4747165262708248, guid: bfb6ac298b0e0b7488510ebaef2e0542, type: 2}
+  - {fileID: 4487117629532676, guid: afc2a99b97f6faa44a17cfb651b302a2, type: 2}
+  - {fileID: 4356397689922876, guid: 93dcc0f1187f13542acc58e485d3b707, type: 2}
+  - {fileID: 4286266423801506, guid: 087c0207767f22d4a895b6ca1e6b558e, type: 2}
+  - {fileID: 4579790420642552, guid: 49b2153e5b1a304498d709069d2e9638, type: 2}
+  - {fileID: 4536238304519538, guid: a59b467f588660f4db067958846cd549, type: 2}
+  - {fileID: 4320855890538132, guid: 1f389d4fbf16c13409bb71735f2617fe, type: 2}
 --- !u!1 &1309969047
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,8 +314,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1309969047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 2}
-  m_LocalScale: {x: 1.00495, y: 0.976965, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1

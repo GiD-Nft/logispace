@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - CanLand
+  - PlayerShip
+  - SpaceButton
+  - OnPlanetButton
+  - OnPlanetOther
+  - OnPlanetBackground
   layers:
   - Default
   - TransparentFX
