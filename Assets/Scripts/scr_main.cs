@@ -31,24 +31,41 @@ public class Control // Класс для глобальных переменн�
         }
     }
 
-    public static void PlanetObjectsDestroy() // При взлёте с планеты - уничтожаем все планетарные объекты
+	public static void PlanetObjectsAction(string action) // При взлёте с планеты - уничтожаем все планетарные объекты
     {
-        planet_objects_for_action = new List<GameObject>(); // Переинициируем список
-        Debug.Log("Уничтожаем планетарные объекты");
-        planet_objects_for_action.AddRange(GameObject.FindGameObjectsWithTag("OnPlanetButton"));
-        planet_objects_for_action.AddRange(GameObject.FindGameObjectsWithTag("OnPlanetBackground"));
-        planet_objects_for_action.AddRange(GameObject.FindGameObjectsWithTag("OnPlanetOther"));
-        foreach (GameObject g in planet_objects_for_action)
-        {
-            MonoBehaviour.Destroy(g);
-        }
+		if (action == "destroy") 
+		{
+			planet_objects_for_action = new List<GameObject> (); // Переинициируем список
+			Debug.Log ("Уничтожаем планетарные объекты");
+			planet_objects_for_action.AddRange (GameObject.FindGameObjectsWithTag ("OnPlanetButton"));
+			planet_objects_for_action.AddRange (GameObject.FindGameObjectsWithTag ("OnPlanetBackground"));
+			planet_objects_for_action.AddRange (GameObject.FindGameObjectsWithTag ("OnPlanetOther"));
+			foreach (GameObject g in planet_objects_for_action) {
+				MonoBehaviour.Destroy (g);
+			}
+		} 
+		else if (action == "deactivate") 
+		{
+			planet_objects_for_action = new List<GameObject> (); // Переинициируем список
+			planet_objects_for_action.AddRange (GameObject.FindGameObjectsWithTag ("OnPlanetButton"));
+			foreach (GameObject g in planet_objects_for_action) 
+			{
+				g.SetActive (false);
+			}
+		} 
+		else if (action == "activate") 
+		{
+			foreach (GameObject g in planet_objects_for_action) 
+			{
+				g.SetActive (true);
+			}
+		}
     }
 }
 
 
 public class scr_main : MonoBehaviour 
 {
-
     public Transform obj_players_ship;
     //public Transform obj_planet; // Планета в этой зоне (экране). На каждом экране своя
     //public List<Transform> obj_satellites; // Спутники (их может быть несколько)
@@ -96,6 +113,7 @@ public class scr_main : MonoBehaviour
             RaycastHit2D rayHit = Physics2D.Raycast(CurMousePos, Vector2.zero);
             if (rayHit.transform != null)
             {
+                Debug.Log(rayHit.transform.name);
                 //Debug.Log("Selected object: " + rayHit.transform.name);
                 //Debug.Log("Selected object's tag: " + rayHit.transform.tag);
                 if (rayHit.transform.tag == "CanLand") // CanLand - тэг объекта, который ставится тем объектам, на которые можно приземлиться
@@ -116,13 +134,13 @@ public class scr_main : MonoBehaviour
                 else if (rayHit.transform.name == "Button_takeoff")
                 {
 					Debug.Log ("Взлёт");
-                    Control.PlanetObjectsDestroy();
+                    Control.PlanetObjectsAction("destroy");
                     Control.SpaceObjectsActivate(true);
                 }
-				else if (rayHit.transform.name == "btn_explore(Clone)")
+				else if (rayHit.transform.name == "Button_explore")
 				{
-					//Запуск игры Числа
-					// Предположительно деактивируются объекты планеты, и создаётся куча объектов с цифрами, но тут подумать
+					Control.PlanetObjectsAction ("deactivate");
+					scr_object_generating.NumbersGameObjectsGeneration ();
 				}
             }
         }
