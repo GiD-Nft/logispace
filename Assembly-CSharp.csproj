@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{83AC00E0-8692-395B-190D-79649E656914}</ProjectGuid>
+    <ProjectGuid>{A938702F-FF00-459A-4DE0-1F077FA96A89}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\LogispaceObject.cs" />
      <Compile Include="Assets\Scripts\OtherObects.cs" />
      <Compile Include="Assets\Scripts\Planet.cs" />
+     <Compile Include="Assets\Scripts\scr_alien_movement.cs" />
      <Compile Include="Assets\Scripts\scr_button_play.cs" />
      <Compile Include="Assets\Scripts\scr_landing.cs" />
      <Compile Include="Assets\Scripts\scr_main.cs" />
@@ -67,16 +68,16 @@
      <Compile Include="Assets\Scripts\Ship.cs" />
      <Compile Include="Assets\Scripts\todo.cs" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>C:/Users/1/Desktop/Никиты/Игра_Бережной/logispace-Nikita1/logispace-Nikita/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>C:/Users/1/Desktop/Никиты/Игра_Бережной/Logispace/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/1/Desktop/Никиты/Игра_Бережной/logispace-Nikita1/logispace-Nikita/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/1/Desktop/Никиты/Игра_Бережной/Logispace/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>C:/Users/1/Desktop/Никиты/Игра_Бережной/logispace-Nikita1/logispace-Nikita/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>C:/Users/1/Desktop/Никиты/Игра_Бережной/Logispace/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/1/Desktop/Никиты/Игра_Бережной/logispace-Nikita1/logispace-Nikita/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/1/Desktop/Никиты/Игра_Бережной/Logispace/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

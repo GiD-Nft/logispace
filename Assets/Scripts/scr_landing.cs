@@ -8,8 +8,6 @@ public class scr_landing : MonoBehaviour
     public List<Transform> buttons; // Кнопки
     Planet planet;
 
-    // Надо подумать, может это как-то можно сделать автоматически, без занесения объектов вручную через интерфейс.
-
     // Use this for initialization
     void Start () 
     {

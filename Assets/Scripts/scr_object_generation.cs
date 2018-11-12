@@ -17,6 +17,8 @@ public class scr_object_generating : MonoBehaviour
         //Instantiate(current_obj);
 		objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-0.41, (float)1.27, (float)1), new Vector3(1,1,1));
         //Instantiate(current_obj);
+		objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)3, (float)-0.3, (float)1), new Vector3(1,1,1));
+		//Instantiate(current_obj);
 		objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1,1,1));
         //Instantiate(current_obj);
 		objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1,1,1));
@@ -73,7 +75,7 @@ public class scr_object_generating : MonoBehaviour
         //current_obj = obj_prefab_all;
         current_obj.name = logispaceObject.Name;
         switch (logispaceObject.Name) {
-            case "Earth":  case "Moon": case "Station":
+			case "Earth":  case "Moon": case "Station": case "Military_base":
                 current_obj.tag = "CanLand";
                 break;
             case "Players_ship":
