@@ -17,7 +17,7 @@ public class scr_object_generating : MonoBehaviour
         //Instantiate(current_obj);
 		objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-0.41, (float)1.27, (float)1), new Vector3(1,1,1));
         //Instantiate(current_obj);
-		objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)3, (float)-0.3, (float)1), new Vector3(1,1,1));
+		objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)3, (float)-1.5, (float)1), new Vector3(1,1,1));
 		//Instantiate(current_obj);
 		objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1,1,1));
         //Instantiate(current_obj);
@@ -66,7 +66,25 @@ public class scr_object_generating : MonoBehaviour
 	{
 		GameObject current_obj = new GameObject();
 		current_obj.name = "numbersObj";
-		current_obj.AddComponent<numbers_experiments> ();
+		current_obj.AddComponent<scr_numbers> ();
+	}
+
+	public static void AlienShipObjectGeneration()
+	{
+		// Здесь надо сделать генерацию по краю карты для пограничных систем; и в любой точке для систем, захваченных пришельцами.
+		Vector2 size = GameObject.Find ("bkg_EarthArea").GetComponent<SpriteRenderer> ().sprite.rect.size;
+		float x = Control.systemWidth / 2 - 1;
+		float y;
+		RaycastHit2D rayHit;
+
+		// Здесь проверка на то, чтобы корабль не заспавнился на другом объекте
+
+		do 
+		{
+			y = Random.Range (-Control.systemHeight / 2, Control.systemHeight / 2);
+			rayHit = Physics2D.Raycast (new Vector2 (x, Random.Range (0, y)), Vector2.zero);
+		} while (rayHit.transform != null);
+		objectParamsSet(new Ship("Aliens_ship", "spr_aliens_ship"), new Vector3(x, y, 0), new Vector3(1,1,1));
 	}
 
     public static void objectParamsSet(LogispaceObject logispaceObject, Vector3 objPosition, Vector3 objScale)
@@ -93,6 +111,9 @@ public class scr_object_generating : MonoBehaviour
             case "Back_planetpic": case "Header_planetname":
                 current_obj.tag = "OnPlanetOther";
                 break;
+			case "Aliens_ship":
+				current_obj.tag = "AliensShip";
+				break;
         }
 
         var spriteComponent = current_obj.AddComponent<SpriteRenderer>();
@@ -105,7 +126,7 @@ public class scr_object_generating : MonoBehaviour
 		{
 			var circleCollider = current_obj.AddComponent<CircleCollider2D>();
         	circleCollider.radius = (float)1.54; // Сюда вставить высоту спрайта
-			if (logispaceObject.objectType == "Button")
+			//if (logispaceObject.objectType == "Button")
 				circleCollider.isTrigger = true;
 		}
 			
@@ -114,10 +135,18 @@ public class scr_object_generating : MonoBehaviour
 
 		// Прихерачивание скриптов
 
-		if (logispaceObject.Name == "Players_ship") 
+		switch (logispaceObject.Name) 
 		{
-			var scr = current_obj.AddComponent<scr_players_ship> ();
-			scr.Speed = 2;
+			case "Players_ship":
+				var scr1 = current_obj.AddComponent<scr_players_ship> ();
+				scr1.Speed = 2;
+				break;
+			case "Aliens_ship":
+				var scr2 = current_obj.AddComponent<scr_alien_movement> ();
+				scr2.speed = 2;
+				break;
+			default:
+				break;
 		}
 		
     }

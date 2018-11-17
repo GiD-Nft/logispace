@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class numbers_experiments : MonoBehaviour 
+public class scr_numbers : MonoBehaviour 
 {
 
 	public int selGridInt = 0;

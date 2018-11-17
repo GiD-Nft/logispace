@@ -8,6 +8,10 @@ public class Control // Класс для глобальных переменн�
     public static Vector2 playerVectorTarget; // Точка, в которую должен полететь корабль игрока
     public static string playerTargetName; // Название объекта, к которому летит игрок. Нужно для посадки в скрипте scr_player_ship метод SpaceshipMovement
     public static bool buttonPlay = false; // Состояние кнопки btn_play. Если false - все стоят, если true - двигаются
+	public static string currentSystemStatus; // Состояние текущей системы. {Принадлежит пришельцам; Пограничная; Принадлежит людям}
+
+	public static float systemHeight; // Высота космоса в относительных координатах (пиксели / 100), с центром в середине экрана.
+	public static float systemWidth; // Ширина
 
     public static List<GameObject> space_objects_for_action; // Список космических объектов для различных действий - активации/деактивации
     public static List<GameObject> planet_objects_for_action; // Список планетарных объектов для различных действий, например уничтожения
@@ -91,8 +95,13 @@ public class scr_main : MonoBehaviour
 //            Instantiate(t, new Vector3(t.position.x, t.position.y, t.position.z), Quaternion.identity);
 //            Debug.Log("      Готово");
 //        }
+		Vector2 size = GameObject.Find ("bkg_EarthArea").GetComponent<SpriteRenderer> ().sprite.rect.size;
+		Control.systemWidth = size.x / 100;
+		Control.systemHeight = size.y / 100;
 
+		Control.currentSystemStatus = "border";
         scr_object_generating.EarthAreaObjectGeneration(); //Вызываем метод создания объектов космоса
+		scr_object_generating.AlienShipObjectGeneration();
 
 		obj_players_ship = GameObject.Find("Players_ship").GetComponent<Transform>();
         Debug.Log("Горит красный свет. Все стоят (Нажмите Play)");
@@ -116,7 +125,7 @@ public class scr_main : MonoBehaviour
                 Debug.Log(rayHit.transform.name);
                 //Debug.Log("Selected object: " + rayHit.transform.name);
                 //Debug.Log("Selected object's tag: " + rayHit.transform.tag);
-                if (rayHit.transform.tag == "CanLand") // CanLand - тэг объекта, который ставится тем объектам, на которые можно приземлиться
+				if (rayHit.transform.tag == "CanLand" || rayHit.transform.tag == "AliensShip") // CanLand - тэг объекта, который ставится тем объектам, на которые можно приземлиться
                 {
 					Debug.Log ("Цель выбрана");
                     Control.playerNeedToFly = true;
