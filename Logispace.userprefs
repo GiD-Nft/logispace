@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\scr_players_ship.cs">
+    <Files>
+      <File FileName="Assets\Scripts\scr_alien_movement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\scr_main.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\scr_object_generation.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\scr_players_ship.cs" Line="26" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -20,6 +20,9 @@ public class scr_players_ship : MonoBehaviour
         //если значение выставлено и движение разрешено, то наш объект должен двигаться в нужную сторону
         if (Control.playerNeedToFly && Control.buttonPlay)
             SpaceshipMovement();
+
+//		if (Control.playerTargetName == "AliensShip")
+//			Control.playerVectorTarget = GameObject.Find (Control.playerTargetName).transform.position;	
 	}
 
     void SpaceshipMovement()
