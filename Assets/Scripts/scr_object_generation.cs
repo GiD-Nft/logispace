@@ -9,24 +9,143 @@ public class scr_object_generating : MonoBehaviour
 
     static GameObject obj_prefab_all;
 
-    public static void EarthAreaObjectGeneration()
+    public static void PlanetAreaObjectGeneration()
     {
-        objectParamsSet(new Planet("Earth", "spr_planet_earth"), new Vector3((float)-2.52, (float)-0.3, (float)1), new Vector3(1,1,1));
-        //Instantiate(current_obj);
-		objectParamsSet(new Planet("Moon", "spr_satellite_moon"), new Vector3((float)2.92, (float)-0.12, (float)1), new Vector3(1,1,1));
-        //Instantiate(current_obj);
-		objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-0.41, (float)1.27, (float)1), new Vector3(1,1,1));
-        //Instantiate(current_obj);
-		objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)3, (float)-1.5, (float)1), new Vector3(1,1,1));
-		//Instantiate(current_obj);
-		objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1,1,1));
-        //Instantiate(current_obj);
-		objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1,1,1));
-        //Instantiate(current_obj);
+        if (Control.currentPlanetIndex < 8)
+            objectParamsSet(new Button("button_right", "spr_button_right"), new Vector3((float)6.0, (float)0, (float)1), new Vector3(1, 1, 1));
+        if (Control.currentPlanetIndex > 1)
+            objectParamsSet(new Button("button_left", "spr_button_left"), new Vector3((float)-6.0, (float)0.0, (float)1), new Vector3(1, 1, 1));
+        
+        switch (Control.currentPlanetIndex)
+        {
+            case 1:
+                MercuryAreaObjectGeneration();
+                break;
+            case 2:
+                VenusAreaObjectGeneration();
+                break;
+            case 3:
+                EarthAreaObjectGeneration();
+                break;
+            case 4:
+                MarsAreaObjectGeneration();
+                break;
+            case 5:
+                JupiterAreaObjectGeneration();
+                break;
+            case 6:
+                SaturnAreaObjectGeneration();
+                break;
+            case 7:
+                UranusAreaObjectGeneration();
+                break;
+            case 8:
+                NeptuneAreaObjectGeneration();
+                break;
+            default:
+                EarthAreaObjectGeneration();
+                break;
+        }
 
     }
 
-	public static void InhabitedFriendlyPlanetScreenGeneration(Planet planet)
+    // Земля
+    public static void EarthAreaObjectGeneration()
+    {
+        objectParamsSet(new Planet("Earth", "spr_planet_earth"), new Vector3((float)-2.52, (float)-0.3, (float)1), new Vector3(1,1,1));
+		objectParamsSet(new Planet("Moon", "spr_satellite_moon"), new Vector3((float)2.92, (float)-0.12, (float)1), new Vector3(1,1,1));
+		objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-0.41, (float)1.27, (float)1), new Vector3(1,1,1));
+		objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)3, (float)-1.5, (float)1), new Vector3(1,1,1));
+		objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1,1,1));
+		objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1,1,1));
+
+    }
+
+    // Меркурий (0 спутников)
+    public static void MercuryAreaObjectGeneration()
+    {
+        objectParamsSet(new Planet("Mercury", "spr_planet_mercury"), new Vector3((float)-2.52, (float)-0.3, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-1.9, (float)1.9, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)4.3, (float)1.5, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+    }
+
+    // Венера (0 спутников)
+    public static void VenusAreaObjectGeneration()
+    {
+        objectParamsSet(new Planet("Venus", "spr_planet_venus"), new Vector3((float)-2.52, (float)1.3, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)0.6, (float)1.3, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)4, (float)-1.9, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+    }
+
+    // Марс (2 спутника)
+    public static void MarsAreaObjectGeneration()
+    {
+        objectParamsSet(new Planet("Mars", "spr_planet_mars"), new Vector3((float)-1.0, (float)2.0, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Phobos", "spr_satellite_phobos"), new Vector3((float)2.95, (float)2.95, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Deimos", "spr_satellite_deimos"), new Vector3((float)5.31, (float)-1.99, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-3.2, (float)0.5, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)-5.36, (float)2.32, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+    }
+
+    // Юпитер (4 спутника)
+    public static void JupiterAreaObjectGeneration()
+    {
+        objectParamsSet(new Planet("Jupiter", "spr_planet_jupiter"), new Vector3((float)-2.94, (float)1.13, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Io", "spr_satellite_io"), new Vector3((float)1.66, (float)1.15, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Europa", "spr_satellite_europa"), new Vector3((float)-3.98, (float)-2.84, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Ganymede", "spr_satellite_ganymede"), new Vector3((float)3.08, (float)-1.55, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Callisto", "spr_satellite_callisto"), new Vector3((float)5.44, (float)-2.12, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-0.41, (float)1.27, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)4.5, (float)2.5, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+    }
+
+    // Сатурн (4 спутника)
+    public static void SaturnAreaObjectGeneration()
+    {
+        objectParamsSet(new Planet("Saturn", "spr_planet_saturn"), new Vector3((float)3.64, (float)1.64, (float)1), new Vector3((float)0.5, (float)0.5, (float)0.5));
+        objectParamsSet(new Planet("Mimas", "spr_satellite_mimas"), new Vector3((float)2.76, (float)-0.09, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Enceladus", "spr_satellite_enceladus"), new Vector3((float)-1.36, (float)1.28, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Tethys", "spr_satellite_tethys"), new Vector3((float)-4.41, (float)1.99, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Dione", "spr_satellite_dione"), new Vector3((float)-4.92, (float)-2.12, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)1.51, (float)2.67, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)3, (float)-2.5, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+    }
+
+    // Уран (3 спутника)
+    public static void UranusAreaObjectGeneration()
+    {
+        objectParamsSet(new Planet("Uranus", "spr_planet_uranus"), new Vector3((float)-3.85, (float)0.12, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Ariel", "spr_satellite_ariel"), new Vector3((float)0.92, (float)1.9, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Miranda", "spr_satellite_miranda"), new Vector3((float)2.73, (float)-0.12, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Umbriel", "spr_satellite_umbriel"), new Vector3((float)4.24, (float)-1.82, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-1.9, (float)1.9, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)5, (float)2.0, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+    }
+
+    // Нептун (1 спутник)
+    public static void NeptuneAreaObjectGeneration()
+    {
+        objectParamsSet(new Planet("Neptune", "spr_planet_neptune"), new Vector3((float)-3.4, (float)-0.5, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Triton", "spr_satellite_triton"), new Vector3((float)4.85, (float)1.82, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-1.45, (float)2.12, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)4.2, (float)-1.5, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
+        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+    }
+
+    public static void InhabitedFriendlyPlanetScreenGeneration(Planet planet)
 	{
 		//Надо бы сделать здесь расчёт положения и масштаба кнопок в зависимости от размеров камеры, чтобы всё всегда умещалось в экран
 		objectParamsSet(new OtherObects("Back_white", "spr_bkg_land_white"), new Vector3((float)0, (float)0, (float)0), new Vector3(1,1,1));
@@ -114,6 +233,9 @@ public class scr_object_generating : MonoBehaviour
 			case "Aliens_ship":
 				current_obj.tag = "AliensShip";
 				break;
+            default:
+                current_obj.tag = "CanLand";
+                break;
         }
 
         var spriteComponent = current_obj.AddComponent<SpriteRenderer>();
@@ -125,7 +247,9 @@ public class scr_object_generating : MonoBehaviour
 		if (logispaceObject.Name != "Players_ship" && logispaceObject.Name != "Back_white" && logispaceObject.Name != "Back_planetpic" && logispaceObject.Name != "Header_planetname") // У этих объектов нет коллайдеров. Мб сделать их isTrigger 
 		{
 			var circleCollider = current_obj.AddComponent<CircleCollider2D>();
-        	circleCollider.radius = (float)1.54; // Сюда вставить высоту спрайта
+        	//circleCollider.radius = (float)1.54; // Сюда вставить высоту спрайта
+            circleCollider.radius = spriteComponent.sprite.rect.height/200;
+
 			//if (logispaceObject.objectType == "Button")
 				circleCollider.isTrigger = true;
 		}

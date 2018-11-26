@@ -9,6 +9,7 @@ public class Control // Класс для глобальных переменн�
     public static string playerTargetName; // Название объекта, к которому летит игрок. Нужно для посадки в скрипте scr_player_ship метод SpaceshipMovement
     public static bool buttonPlay = false; // Состояние кнопки btn_play. Если false - все стоят, если true - двигаются
 	public static string currentSystemStatus; // Состояние текущей системы. {Принадлежит пришельцам; Пограничная; Принадлежит людям}
+    public static int currentPlanetIndex = 3; //Порядковый номер текущей планеты
 
 	public static float systemHeight; // Высота космоса в относительных координатах (пиксели / 100), с центром в середине экрана.
 	public static float systemWidth; // Ширина
@@ -100,7 +101,7 @@ public class scr_main : MonoBehaviour
 		Control.systemHeight = size.y / 100;
 
 		Control.currentSystemStatus = "border";
-        scr_object_generating.EarthAreaObjectGeneration(); //Вызываем метод создания объектов космоса
+        scr_object_generating.PlanetAreaObjectGeneration(); //Вызываем метод создания объектов космоса
 		scr_object_generating.AlienShipObjectGeneration();
 
 		obj_players_ship = GameObject.Find("Players_ship").GetComponent<Transform>();

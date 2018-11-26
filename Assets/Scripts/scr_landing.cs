@@ -7,7 +7,7 @@ public class scr_landing : MonoBehaviour
     public Transform bkg_land_white; // Background
     public List<Transform> buttons; // Кнопки
     Planet planet;
-
+    
     // Use this for initialization
     void Start () 
     {
@@ -22,9 +22,24 @@ public class scr_landing : MonoBehaviour
 
     public void Landing()
     {
+
         //Control.SpaceObjectsActivate(false); // Деактивируем объекты космоса
-		if (Control.playerTargetName == "Earth") {
-			Control.SpaceObjectsActivate (false); // УБРАТЬ ПОТОМ!!!
+        if (Control.playerTargetName == "button_left")
+        {
+            Control.SpaceObjectsActivate(false);
+            Control.currentPlanetIndex -= 1;
+            scr_object_generating.PlanetAreaObjectGeneration();
+        }
+        else if (Control.playerTargetName == "button_right")
+        {
+            Control.SpaceObjectsActivate(false);
+            Control.currentPlanetIndex += 1;
+            scr_object_generating.PlanetAreaObjectGeneration();
+
+        }
+        else if (Control.playerTargetName == "Earth")
+        {
+            Control.SpaceObjectsActivate(false); // УБРАТЬ ПОТОМ!!!
 
 
             //			Debug.Log ("Подгружаем объекты экрана планеты");
@@ -39,10 +54,10 @@ public class scr_landing : MonoBehaviour
             //			}
             planet = new Planet(Control.playerTargetName, "");
             scr_object_generating.InhabitedFriendlyPlanetScreenGeneration(planet);
-		} 
-		else if (Control.playerTargetName == "Moon") 
-		{
-			Control.SpaceObjectsActivate (false); // УБРАТЬ ПОТОМ!!!
+        }
+        else //if (Control.playerTargetName == "Moon")
+        {
+            Control.SpaceObjectsActivate(false); // УБРАТЬ ПОТОМ!!!
 
             //			Debug.Log ("Подгружаем объекты экрана планеты");
             //			Debug.Log ("Загрузка фона");
@@ -59,8 +74,8 @@ public class scr_landing : MonoBehaviour
             //					Debug.Log ("      Готово");
             //				}	
             //			}
-            planet = new Planet(Control.playerTargetName,"");
-			scr_object_generating.UninhabitedPlanetScreenGeneration(planet);
-		}
+            planet = new Planet(Control.playerTargetName, "");
+            scr_object_generating.UninhabitedPlanetScreenGeneration(planet);
+        }
     }
 }
