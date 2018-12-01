@@ -10,7 +10,7 @@ public class scr_alien_movement : MonoBehaviour
 	private string targetName; // Название объекта, к которому летит корабль
 	private Rigidbody2D body;
 	public float speed = 0.05f;
-	private float distanceToPoint = 1f; // ?Подумать? Расстояние, на котором выбирается точка, в которую полетит корабль
+	private float distanceToPoint = 3f; // ?Подумать? Расстояние, на котором выбирается точка, в которую полетит корабль
 
 	void Start () 
 	{
@@ -28,8 +28,11 @@ public class scr_alien_movement : MonoBehaviour
 			// Выбор точки куда лететь.
 			float a = body.transform.position.x + Random.Range (-distanceToPoint, distanceToPoint);
 			float b = body.transform.position.y + Random.Range (-distanceToPoint, distanceToPoint);
-			vectorTarget = new Vector2 (a, b);
-			needToFly = true;
+            if (a > Control.borders.x && a < Control.borders.z && b > Control.borders.y && b < Control.borders.w)
+            {
+                vectorTarget = new Vector2(a, b);
+                needToFly = true;
+            }
 		}
 	}
 
