@@ -21,8 +21,8 @@ public class scr_players_ship : MonoBehaviour
         if (Control.playerNeedToFly && Control.buttonPlay)
             SpaceshipMovement();
 
-//		if (Control.playerTargetName == "AliensShip")
-//			Control.playerVectorTarget = GameObject.Find (Control.playerTargetName).transform.position;	
+        if (Control.playerTargetName == "Aliens_ship" || Control.playerTargetName == "Pirates_ship")
+            Control.playerVectorTarget = GameObject.Find(Control.playerTargetName).transform.position;	
 	}
 
     void SpaceshipMovement()

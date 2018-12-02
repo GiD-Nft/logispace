@@ -12,9 +12,9 @@ public class scr_object_generating : MonoBehaviour
     public static void PlanetAreaObjectGeneration()
     {
         if (Control.currentPlanetIndex < 8)
-            objectParamsSet(new Button("button_right", "spr_button_right"), new Vector3((float)6.0, (float)0, (float)1), new Vector3(1, 1, 1));
+            objectParamsSet(new Button("button_right", "spr_button_right"), new Vector3((float)5.0, (float)0, (float)1), new Vector3(1, 1, 1));
         if (Control.currentPlanetIndex > 1)
-            objectParamsSet(new Button("button_left", "spr_button_left"), new Vector3((float)-6.0, (float)0.0, (float)1), new Vector3(1, 1, 1));
+            objectParamsSet(new Button("button_left", "spr_button_left"), new Vector3((float)-5.0, (float)0.0, (float)1), new Vector3(1, 1, 1));
         
         switch (Control.currentPlanetIndex)
         {
@@ -188,23 +188,86 @@ public class scr_object_generating : MonoBehaviour
 		current_obj.AddComponent<scr_numbers> ();
 	}
 
+    public static void BattleScreenGeneration()
+    {
+        GameObject current_obj = new GameObject();
+        current_obj.name = "bullsAndCowsObj";
+        current_obj.AddComponent<scr_bulls_and_cows>();
+    }
+
 	public static void AlienShipObjectGeneration()
 	{
 		// Здесь надо сделать генерацию по краю карты для пограничных систем; и в любой точке для систем, захваченных пришельцами.
-		Vector2 size = GameObject.Find ("bkg_EarthArea").GetComponent<SpriteRenderer> ().sprite.rect.size;
-		float x = Control.systemWidth / 2 - 1;
-		float y;
-		RaycastHit2D rayHit;
+        string area = "all";
 
-		// Здесь проверка на то, чтобы корабль не заспавнился на другом объекте
+        switch (Control.currentSystemStatus)
+        {
+            case "alien":
+                area = "all";
+                break;
+            case "border":
+                area = "right";
+                break;
+            default:
+                return;
+        }
 
-		do 
-		{
-			y = Random.Range (-Control.systemHeight / 2, Control.systemHeight / 2);
-			rayHit = Physics2D.Raycast (new Vector2 (x, Random.Range (0, y)), Vector2.zero);
-		} while (rayHit.transform != null);
-		objectParamsSet(new Ship("Aliens_ship", "spr_aliens_ship"), new Vector3(x, y, 0), new Vector3(1,1,1));
+        objectParamsSet(new Ship("Aliens_ship", "spr_aliens_ship"), GetGenerationPoint(area), new Vector3(1, 1, 1));
 	}
+
+    public static void PirateShipObjectGeneration()
+    {
+        // Здесь надо сделать генерацию по в любой точке карты для систем под контролем людей, и по левоу краю для пограничных
+        string area = "all";
+
+        switch (Control.currentSystemStatus)
+        {
+            case "human":
+                area = "all";
+                break;
+            case "border":
+                area = "left";
+                break;
+            default:
+                return;
+        }
+
+        objectParamsSet(new Ship("Pirates_ship", "spr_pirates_ship"), GetGenerationPoint(area), new Vector3(1, 1, 1));
+    }
+
+    public static Vector3 GetGenerationPoint(string area) // Генерируем точку, в которой появится корабль. area - область, в которой генерятся корабли (left, right, all)
+    {
+        float x, y;
+        float borderLeft = 0, borderRight = 0;
+        RaycastHit2D rayHit;
+
+        switch (area)
+        {
+            case "left":
+                borderLeft = Control.borders.x;
+                borderRight = 0;
+                break;
+            case "right":
+                borderLeft = 0;
+                borderRight = Control.borders.z;
+                break;
+            case "all":
+                borderLeft = Control.borders.x;
+                borderLeft = Control.borders.z;
+                break;
+        }
+
+        x = Random.Range(borderLeft, borderRight);
+
+        // Здесь проверка на то, чтобы корабль не заспавнился на другом объекте
+        do
+        {
+            y = Random.Range(Control.borders.y, Control.borders.w);
+            rayHit = Physics2D.Raycast(new Vector2(x, y), Vector2.zero);
+        } while (rayHit.transform != null);
+
+        return new Vector3(x, y, 0);
+    }
 
     public static void objectParamsSet(LogispaceObject logispaceObject, Vector3 objPosition, Vector3 objScale)
     {
@@ -266,6 +329,7 @@ public class scr_object_generating : MonoBehaviour
 				scr1.Speed = 2;
 				break;
 			case "Aliens_ship":
+            case "Pirates_ship": //////////////////////////////////////////////// Пока что так
 				var scr2 = current_obj.AddComponent<scr_alien_movement> ();
 				scr2.speed = 2;
 				break;

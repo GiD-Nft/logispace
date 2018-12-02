@@ -55,6 +55,13 @@ public class scr_landing : MonoBehaviour
             planet = new Planet(Control.playerTargetName, "");
             scr_object_generating.InhabitedFriendlyPlanetScreenGeneration(planet);
         }
+
+        else if (Control.playerTargetName == "Aliens_ship" || Control.playerTargetName == "Pirates_ship")
+        {
+            Control.SpaceObjectsActivate(false);
+            scr_object_generating.BattleScreenGeneration();
+        }
+
         else //if (Control.playerTargetName == "Moon")
         {
             Control.SpaceObjectsActivate(false); // УБРАТЬ ПОТОМ!!!

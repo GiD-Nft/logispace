@@ -8,11 +8,12 @@ public class Control // Класс для глобальных переменн�
     public static Vector2 playerVectorTarget; // Точка, в которую должен полететь корабль игрока
     public static string playerTargetName; // Название объекта, к которому летит игрок. Нужно для посадки в скрипте scr_player_ship метод SpaceshipMovement
     public static bool buttonPlay = false; // Состояние кнопки btn_play. Если false - все стоят, если true - двигаются
-	public static string currentSystemStatus; // Состояние текущей системы. {Принадлежит пришельцам; Пограничная; Принадлежит людям}
+	public static string currentSystemStatus; // Состояние текущей системы. {Принадлежит пришельцам; Пограничная; Принадлежит людям} (alien, border, human)
     public static int currentPlanetIndex = 3; //Порядковый номер текущей планеты
 
 	public static float systemHeight; // Высота космоса в относительных координатах (пиксели / 100), с центром в середине экрана.
 	public static float systemWidth; // Ширина
+    public static Vector4 borders; // Границы космоса (л, в, п, н) (Нужно для предотвращения вылета за пределы кораблём, врагами и камерой)
 
     public static List<GameObject> space_objects_for_action; // Список космических объектов для различных действий - активации/деактивации
     public static List<GameObject> planet_objects_for_action; // Список планетарных объектов для различных действий, например уничтожения
@@ -30,6 +31,7 @@ public class Control // Класс для глобальных переменн�
         space_objects_for_action.AddRange(GameObject.FindGameObjectsWithTag("CanLand"));
         space_objects_for_action.AddRange(GameObject.FindGameObjectsWithTag("PlayerShip"));
         space_objects_for_action.AddRange(GameObject.FindGameObjectsWithTag("SpaceButton"));
+        space_objects_for_action.AddRange(GameObject.FindGameObjectsWithTag("AliensShip"));
         foreach (GameObject g in space_objects_for_action)
         {
             g.SetActive(active);
@@ -100,9 +102,12 @@ public class scr_main : MonoBehaviour
 		Control.systemWidth = size.x / 100;
 		Control.systemHeight = size.y / 100;
 
+        Control.borders = new Vector4(size.x / 100 / -2, size.y / 100 / -2, size.x / 100 / 2, size.y / 100 / 2);
+
 		Control.currentSystemStatus = "border";
         scr_object_generating.PlanetAreaObjectGeneration(); //Вызываем метод создания объектов космоса
 		scr_object_generating.AlienShipObjectGeneration();
+        scr_object_generating.PirateShipObjectGeneration();
 
 		obj_players_ship = GameObject.Find("Players_ship").GetComponent<Transform>();
         Debug.Log("Горит красный свет. Все стоят (Нажмите Play)");
@@ -126,7 +131,7 @@ public class scr_main : MonoBehaviour
                 Debug.Log(rayHit.transform.name);
                 //Debug.Log("Selected object: " + rayHit.transform.name);
                 //Debug.Log("Selected object's tag: " + rayHit.transform.tag);
-				if (rayHit.transform.tag == "CanLand" || rayHit.transform.tag == "AliensShip") // CanLand - тэг объекта, который ставится тем объектам, на которые можно приземлиться
+				if (rayHit.transform.tag == "CanLand") // CanLand - тэг объекта, который ставится тем объектам, на которые можно приземлиться
                 {
 					Debug.Log ("Цель выбрана");
                     Control.playerNeedToFly = true;
@@ -152,6 +157,13 @@ public class scr_main : MonoBehaviour
 					Control.PlanetObjectsAction ("deactivate");
 					scr_object_generating.NumbersGameObjectsGeneration ();
 				}
+                else if (rayHit.transform.name == "Aliens_ship" || rayHit.transform.name == "Pirates_ship")
+                {
+                    Debug.Log("Цель выбрана");
+                    Control.playerNeedToFly = true;
+                    Control.playerVectorTarget = new Vector2(rayHit.transform.position.x, rayHit.transform.position.y); // Конечная точка - центр объекта
+                    Control.playerTargetName = rayHit.transform.name;
+                }
             }
         }
 	}
