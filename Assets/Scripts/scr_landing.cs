@@ -62,6 +62,12 @@ public class scr_landing : MonoBehaviour
             scr_object_generating.BattleScreenGeneration();
         }
 
+        else if (Control.playerTargetName == "Station" || Control.playerTargetName == "Military_base")
+        {
+            Control.SpaceObjectsActivate(false);
+            scr_object_generating.StationsScreenGeneration(Control.playerTargetName);
+        }
+
         else //if (Control.playerTargetName == "Moon")
         {
             Control.SpaceObjectsActivate(false); // УБРАТЬ ПОТОМ!!!
