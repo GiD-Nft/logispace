@@ -21,6 +21,7 @@ public class scr_bulls_and_cows : MonoBehaviour {
         if (GUI.Button(new Rect(350, 170, 120, 80), "Выйти"))
         {
             Control.SpaceObjectsActivate(true);
+            Control.setLandCameraSize(false);
             Destroy(GameObject.Find("bullsAndCowsObj"));
         }
 

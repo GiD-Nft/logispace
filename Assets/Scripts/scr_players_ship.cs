@@ -30,7 +30,7 @@ public class scr_players_ship : MonoBehaviour
         body.MovePosition(Vector2.MoveTowards(transform.position, Control.playerVectorTarget, Speed * Time.deltaTime));
         //Плавное перемещение до точки. Умножаем на Time.timeScale для того, чтоб было плавнее и картинка не дергалась
         //Теперь проверяем расстояние до цели
-        if (Vector2.Distance(transform.position, Control.playerVectorTarget) < 0.01)
+        if (Vector2.Distance(transform.position, Control.playerVectorTarget) < 0.05)
         {
             Control.playerNeedToFly = false;//Выключаем, если дошли
             Control.buttonPlay = false; // Снова всё останавливается
