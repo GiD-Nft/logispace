@@ -96,7 +96,7 @@ public class scr_object_generating : MonoBehaviour
     // Юпитер (4 спутника)
     public static void JupiterAreaObjectGeneration()
     {
-        objectParamsSet(new Planet("Jupiter", "spr_planet_jupiter"), new Vector3((float)-2.94, (float)1.13, (float)1), new Vector3(1, 1, 1));
+        objectParamsSet(new Planet("Jupiter", "spr_planet_jupiter"), new Vector3((float)-2.94, (float)1.13, (float)1), new Vector3((float)0.8, (float)0.8, (float)0.8));
         objectParamsSet(new Planet("Io", "spr_satellite_io"), new Vector3((float)1.66, (float)1.15, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Planet("Europa", "spr_satellite_europa"), new Vector3((float)-3.98, (float)-2.84, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Planet("Ganymede", "spr_satellite_ganymede"), new Vector3((float)3.08, (float)-1.55, (float)1), new Vector3(1, 1, 1));
@@ -145,6 +145,8 @@ public class scr_object_generating : MonoBehaviour
         objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
     }
 
+
+    //todo объединить эти три в один:
     public static void InhabitedFriendlyPlanetScreenGeneration(Planet planet)
 	{
 		//Надо бы сделать здесь расчёт положения и масштаба кнопок в зависимости от размеров камеры, чтобы всё всегда умещалось в экран
@@ -152,17 +154,18 @@ public class scr_object_generating : MonoBehaviour
 		objectParamsSet(new Button("Button_quests", "spr_button_quests"), new Vector3((float)-2.65, (float)1.59, (float)-1), new Vector3(1,1,1));
 		objectParamsSet(new Button("Button_shop", "spr_button_shop"), new Vector3((float)-2.65, (float)0.52, (float)-1), new Vector3(1,1,1));
 		objectParamsSet(new Button("Button_ship", "spr_button_ship"), new Vector3((float)-2.65, (float)-0.57, (float)-1), new Vector3(1,1,1));
-		objectParamsSet(new Button("Button_menu", "spr_button_menu_onPlanet"), new Vector3((float)-2.65, (float)-1.64, (float)-1), new Vector3(1,1,1));
+		objectParamsSet(new Button("Button_menu_onPlanet", "spr_button_menu_onPlanet"), new Vector3((float)-2.65, (float)-1.64, (float)-1), new Vector3(1,1,1));
 		objectParamsSet(new Button("Button_takeoff", "spr_button_takeoff"), new Vector3((float)2.37, (float)-2.15, (float)-1), new Vector3(1,1,1));
 
-		string spr_planetpic = "", spr_planetname = "";
-		switch (planet.Name) 
-		{
-		case "Earth":
-			spr_planetpic = "spr_planetpic_earth";
-			spr_planetname = "spr_planetname_earth";
-			break;
-		}
+		string spr_planetpic = "spr_planetpic_" + planet.Name.ToLower(), 
+            spr_planetname = "spr_planetname_" + planet.Name.ToLower();
+		//switch (planet.Name) 
+		//{
+		//case "Earth":
+		//	spr_planetpic = "spr_planetpic_earth";
+		//	spr_planetname = "spr_planetname_earth";
+		//	break;
+		//}
 
         ///// Здесь надо поработать с масштабом, чтобы в дефолтном виде он был 1:1, тут костыльЮ так как картинка чуть больше чем надо. Вывод: надо уменьшить картинку.
         ///// Здесь надо поработать с масштабом, чтобы в дефолтном виде он был 1:1, тут костыльЮ так как картинка чуть больше чем надо. Вывод: надо уменьшить картинку.
@@ -181,7 +184,42 @@ public class scr_object_generating : MonoBehaviour
         objectParamsSet(new Button("Button_takeoff", "spr_button_takeoff"), new Vector3((float)2.37, (float)-1.8, (float)-1), new Vector3(1, 1, 1));
     }
 
-	public static void NumbersGameObjectsGeneration()
+    public static void StationsScreenGeneration(string target)
+    {
+        // target - Station or Military_base
+        //Надо бы сделать здесь расчёт положения и масштаба кнопок в зависимости от размеров камеры, чтобы всё всегда умещалось в экран
+        objectParamsSet(new OtherObects("Back_white", "spr_bkg_land_white"), new Vector3((float)0, (float)0, (float)0), new Vector3(1, 1, 1));
+        if (target == "Station")
+        {
+            objectParamsSet(new Button("Button_quests", "spr_button_quests"), new Vector3((float)-2.65, (float)1.59, (float)-1), new Vector3(1, 1, 1));
+            objectParamsSet(new Button("Button_shop", "spr_button_shop"), new Vector3((float)-2.65, (float)0.52, (float)-1), new Vector3(1, 1, 1));
+        }
+        else
+        {
+            objectParamsSet(new Button("Button_combat_mission", "spr_button_combat_mission"), new Vector3((float)-2.65, (float)0.7, (float)-1), new Vector3(1, 1, 1));
+        }
+
+        objectParamsSet(new Button("Button_ship", "spr_button_ship"), new Vector3((float)-2.65, (float)-0.57, (float)-1), new Vector3(1, 1, 1));
+        objectParamsSet(new Button("Button_menu_onPlanet", "spr_button_menu_onPlanet"), new Vector3((float)-2.65, (float)-1.64, (float)-1), new Vector3(1, 1, 1));
+        objectParamsSet(new Button("Button_takeoff", "spr_button_takeoff"), new Vector3((float)2.37, (float)-2.15, (float)-1), new Vector3(1, 1, 1));
+
+        string spr_planetpic = "spr_planetpic_" + target.ToLower(),
+            spr_planetname = "spr_planetname_" + target.ToLower();
+        objectParamsSet(new Planet("Back_planetpic", spr_planetpic), new Vector3((float)2.37, (float)0.04, (float)-1), new Vector3((float)0.674, (float)0.673, 1));
+        objectParamsSet(new Planet("Header_planetname", spr_planetname), new Vector3((float)2.34, (float)2.1, (float)-1), new Vector3((float)0.765, (float)0.703, 1));
+    }
+
+    public static void OnPlanetButtonClick(Button button)
+    {
+        //Надо бы сделать здесь расчёт положения и масштаба кнопок в зависимости от размеров камеры, чтобы всё всегда умещалось в экран
+        //objectParamsSet(new OtherObects("Back_white_onPlanet", "spr_bkg_land_white"), new Vector3((float)0, (float)0, (float)-2), new Vector3(1, 1, 1));
+        
+
+        objectParamsSet(new Planet("Header_onPlanet", button.SpriteName), new Vector3((float)0, (float)2.3, (float)-1), new Vector3(1, 1, 1));
+        objectParamsSet(new Button("Button_back", "spr_button_back"), new Vector3((float)0, (float)-2.3, (float)-1), new Vector3(1, 1, 1));
+    }
+
+    public static void NumbersGameObjectsGeneration()
 	{
 		GameObject current_obj = new GameObject();
 		current_obj.name = "numbersObj";
@@ -274,6 +312,7 @@ public class scr_object_generating : MonoBehaviour
         GameObject current_obj = new GameObject();
         //current_obj = obj_prefab_all;
         current_obj.name = logispaceObject.Name;
+
         switch (logispaceObject.Name) {
 			case "Earth":  case "Moon": case "Station": case "Military_base":
                 current_obj.tag = "CanLand";
@@ -284,8 +323,18 @@ public class scr_object_generating : MonoBehaviour
             case "Button_play":
                 current_obj.tag = "SpaceButton";
                 break;
-            case "Button_quests": case "Button_shop": case "Button_ship": case "Button_menu": case "Button_takeoff": case "Button_explore":
+            case "Button_quests":
+            case "Button_shop":
+            case "Button_ship":
+            case "Button_menu_onPlanet":
+            case "Button_takeoff":
+            case "Button_explore":
+            case "Button_combat_mission":
                 current_obj.tag = "OnPlanetButton";
+                break;
+            case "Header_onPlanet":
+            case "Button_back":
+                current_obj.tag = "OnPlanetButton2";
                 break;
             case "Back_white":
                 current_obj.tag = "OnPlanetBackground";

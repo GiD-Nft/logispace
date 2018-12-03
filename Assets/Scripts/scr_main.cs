@@ -17,6 +17,7 @@ public class Control // Класс для глобальных переменн�
 
     public static List<GameObject> space_objects_for_action; // Список космических объектов для различных действий - активации/деактивации
     public static List<GameObject> planet_objects_for_action; // Список планетарных объектов для различных действий, например уничтожения
+
     public static void SpaceObjectsActivate(bool active) //Так как окно планеты появляется поверх космического, надо деактивировать объекты космоса.
     {
 
@@ -50,12 +51,23 @@ public class Control // Класс для глобальных переменн�
 			foreach (GameObject g in planet_objects_for_action) {
 				MonoBehaviour.Destroy (g);
 			}
-		} 
-		else if (action == "deactivate") 
+		}
+        else if (action == "destroy2layer")
+        {
+            planet_objects_for_action = new List<GameObject>(); // Переинициируем список
+            planet_objects_for_action.AddRange(GameObject.FindGameObjectsWithTag("OnPlanetButton2"));
+            foreach (GameObject g in planet_objects_for_action)
+            {
+                MonoBehaviour.Destroy(g);
+            }
+        }
+        else if (action == "deactivate") 
 		{
 			planet_objects_for_action = new List<GameObject> (); // Переинициируем список
 			planet_objects_for_action.AddRange (GameObject.FindGameObjectsWithTag ("OnPlanetButton"));
-			foreach (GameObject g in planet_objects_for_action) 
+            planet_objects_for_action.AddRange(GameObject.FindGameObjectsWithTag("OnPlanetOther"));
+
+            foreach (GameObject g in planet_objects_for_action) 
 			{
 				g.SetActive (false);
 			}
@@ -164,6 +176,17 @@ public class scr_main : MonoBehaviour
                     Control.playerVectorTarget = new Vector2(rayHit.transform.position.x, rayHit.transform.position.y); // Конечная точка - центр объекта
                     Control.playerTargetName = rayHit.transform.name;
                 }
+                else if (rayHit.transform.tag == "OnPlanetButton2")
+                {
+                    Control.PlanetObjectsAction("activate");
+                    Control.PlanetObjectsAction("destroy2layer");
+                }
+                else if (rayHit.transform.tag == "OnPlanetButton")
+                {
+                    Control.PlanetObjectsAction("deactivate");
+                    scr_object_generating.OnPlanetButtonClick(new Button(rayHit.transform.name, "spr_"+ rayHit.transform.name.ToLower()));
+                }
+
             }
         }
 	}

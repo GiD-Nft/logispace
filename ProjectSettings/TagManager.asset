@@ -11,6 +11,7 @@ TagManager:
   - OnPlanetOther
   - OnPlanetBackground
   - AliensShip
+  - OnPlanetButton2
   layers:
   - Default
   - TransparentFX
