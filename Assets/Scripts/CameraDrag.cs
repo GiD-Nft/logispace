@@ -17,7 +17,8 @@ public class CameraDrag : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        MoveCamera();
+        if (Control.isCameraDraggable)
+            MoveCamera();
 	}
 
     void MoveCamera()

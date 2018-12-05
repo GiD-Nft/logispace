@@ -55,6 +55,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Button.cs" />
      <Compile Include="Assets\Scripts\CameraDrag.cs" />
+     <Compile Include="Assets\Scripts\Inventory.cs" />
+     <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\LogispaceObject.cs" />
      <Compile Include="Assets\Scripts\OtherObects.cs" />
      <Compile Include="Assets\Scripts\Planet.cs" />

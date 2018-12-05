@@ -6,10 +6,12 @@ public class scr_players_ship : MonoBehaviour
 {
 
     Rigidbody2D body;
+    Inventory inventory;
 	// Use this for initialization
 	void Start () 
     {
         body = GetComponent<Rigidbody2D>();
+        inventory = new Inventory();
 	}
 
     public float Speed = 0.05f;

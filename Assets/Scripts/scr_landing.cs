@@ -40,6 +40,7 @@ public class scr_landing : MonoBehaviour
         else if (Control.playerTargetName == "Earth")
         {
             Control.setLandCameraSize(true);
+            Control.isCameraDraggable = false;
             Control.SpaceObjectsActivate(false); // УБРАТЬ ПОТОМ!!!
 
 
@@ -60,6 +61,7 @@ public class scr_landing : MonoBehaviour
         else if (Control.playerTargetName == "Aliens_ship" || Control.playerTargetName == "Pirates_ship")
         {
             Control.setLandCameraSize(true);
+            Control.isCameraDraggable = false;
             Control.SpaceObjectsActivate(false);
             scr_object_generating.BattleScreenGeneration();
         }
@@ -67,6 +69,7 @@ public class scr_landing : MonoBehaviour
         else if (Control.playerTargetName == "Station" || Control.playerTargetName == "Military_base")
         {
             Control.setLandCameraSize(true);
+            Control.isCameraDraggable = false;
             Control.SpaceObjectsActivate(false);
             scr_object_generating.StationsScreenGeneration(Control.playerTargetName);
         }
@@ -74,6 +77,7 @@ public class scr_landing : MonoBehaviour
         else //if (Control.playerTargetName == "Moon")
         {
             Control.setLandCameraSize(true);
+            Control.isCameraDraggable = false;
             Control.SpaceObjectsActivate(false); // УБРАТЬ ПОТОМ!!!
 
             //			Debug.Log ("Подгружаем объекты экрана планеты");
