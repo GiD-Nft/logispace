@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 758752684}
   - component: {fileID: 758752685}
   - component: {fileID: 758752686}
+  - component: {fileID: 758752687}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -164,7 +165,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.7238579
+  orthographic size: 2.552733
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -188,8 +189,9 @@ Transform:
   m_GameObject: {fileID: 758752680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -5}
-  m_LocalScale: {x: 1, y: 1.75, z: 1}
-  m_Children: []
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1862984282}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -245,6 +247,64 @@ MonoBehaviour:
   - {fileID: 4579790420642552, guid: 49b2153e5b1a304498d709069d2e9638, type: 2}
   - {fileID: 4536238304519538, guid: a59b467f588660f4db067958846cd549, type: 2}
   - {fileID: 4320855890538132, guid: 1f389d4fbf16c13409bb71735f2617fe, type: 2}
+--- !u!114 &758752687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758752680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826e3c038573fc4459a04597f0c4646f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragSpeed: 2
+--- !u!1001 &1205488489
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 758752683}
+    m_Modifications:
+    - target: {fileID: 4620999453139074, guid: e4faa7e460fbef340bed84415ded96f5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620999453139074, guid: e4faa7e460fbef340bed84415ded96f5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620999453139074, guid: e4faa7e460fbef340bed84415ded96f5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620999453139074, guid: e4faa7e460fbef340bed84415ded96f5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620999453139074, guid: e4faa7e460fbef340bed84415ded96f5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620999453139074, guid: e4faa7e460fbef340bed84415ded96f5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620999453139074, guid: e4faa7e460fbef340bed84415ded96f5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620999453139074, guid: e4faa7e460fbef340bed84415ded96f5, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885521097986220, guid: e4faa7e460fbef340bed84415ded96f5, type: 2}
+      propertyPath: m_Name
+      value: Button_play
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e4faa7e460fbef340bed84415ded96f5, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1309969047
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +356,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dd71bd51d111e3d43872abc2094d2f98, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ec28b5859e1b4646923a6c2adb7548f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -320,3 +380,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1862984282 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4620999453139074, guid: e4faa7e460fbef340bed84415ded96f5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1205488489}

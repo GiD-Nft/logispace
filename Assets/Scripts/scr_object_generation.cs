@@ -11,10 +11,11 @@ public class scr_object_generating : MonoBehaviour
 
     public static void PlanetAreaObjectGeneration()
     {
+        float arrow_x = Control.borders.z - 0.1f;
         if (Control.currentPlanetIndex < 8)
-            objectParamsSet(new Button("button_right", "spr_button_right"), new Vector3((float)5.0, (float)0, (float)1), new Vector3(1, 1, 1));
+            objectParamsSet(new Button("button_right", "spr_button_right"), new Vector3((float)arrow_x, (float)0, (float)1), new Vector3(1, 1, 1));
         if (Control.currentPlanetIndex > 1)
-            objectParamsSet(new Button("button_left", "spr_button_left"), new Vector3((float)-5.0, (float)0.0, (float)1), new Vector3(1, 1, 1));
+            objectParamsSet(new Button("button_left", "spr_button_left"), new Vector3((float)-arrow_x, (float)0.0, (float)1), new Vector3(1, 1, 1));
         
         switch (Control.currentPlanetIndex)
         {
@@ -57,7 +58,7 @@ public class scr_object_generating : MonoBehaviour
 		objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-0.41, (float)1.27, (float)1), new Vector3(1,1,1));
 		objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)3, (float)-1.5, (float)1), new Vector3(1,1,1));
 		objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1,1,1));
-		objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1,1,1));
+		//objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1,1,1));
 
     }
 
@@ -68,7 +69,7 @@ public class scr_object_generating : MonoBehaviour
         objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-1.9, (float)1.9, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)4.3, (float)1.5, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
-        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+        //objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
     }
 
     // Венера (0 спутников)
@@ -78,7 +79,7 @@ public class scr_object_generating : MonoBehaviour
         objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)0.6, (float)1.3, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)4, (float)-1.9, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
-        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+        //objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
     }
 
     // Марс (2 спутника)
@@ -90,7 +91,7 @@ public class scr_object_generating : MonoBehaviour
         objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-3.2, (float)0.5, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)-5.36, (float)2.32, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
-        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+        //objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
     }
 
     // Юпитер (4 спутника)
@@ -104,7 +105,7 @@ public class scr_object_generating : MonoBehaviour
         objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-0.41, (float)1.27, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)4.5, (float)2.5, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
-        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+        //objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
     }
 
     // Сатурн (4 спутника)
@@ -131,7 +132,7 @@ public class scr_object_generating : MonoBehaviour
         objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-1.9, (float)1.9, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)5, (float)2.0, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
-        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+        //objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
     }
 
     // Нептун (1 спутник)
@@ -142,7 +143,7 @@ public class scr_object_generating : MonoBehaviour
         objectParamsSet(new Planet("Station", "spr_station"), new Vector3((float)-1.45, (float)2.12, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Planet("Military_base", "spr_military_base"), new Vector3((float)4.2, (float)-1.5, (float)1), new Vector3(1, 1, 1));
         objectParamsSet(new Ship("Players_ship", "spr_players_ship"), new Vector3(0, 0, 0), new Vector3(1, 1, 1));
-        objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
+        //objectParamsSet(new Button("Button_play", "spr_button_play"), new Vector3((float)-0.01, (float)-2, (float)1), new Vector3(1, 1, 1));
     }
 
 
@@ -150,7 +151,7 @@ public class scr_object_generating : MonoBehaviour
     public static void InhabitedFriendlyPlanetScreenGeneration(Planet planet)
 	{
 		//Надо бы сделать здесь расчёт положения и масштаба кнопок в зависимости от размеров камеры, чтобы всё всегда умещалось в экран
-		objectParamsSet(new OtherObects("Back_white", "spr_bkg_land_white"), new Vector3((float)0, (float)0, (float)0), new Vector3(1,1,1));
+		objectParamsSet(new OtherObects("Back_white", "spr_bkg_land_white"), new Vector3((float)0, (float)0, (float)0), new Vector3(2,2,1));
 		objectParamsSet(new Button("Button_quests", "spr_button_quests"), new Vector3((float)-2.65, (float)1.59, (float)-1), new Vector3(1,1,1));
 		objectParamsSet(new Button("Button_shop", "spr_button_shop"), new Vector3((float)-2.65, (float)0.52, (float)-1), new Vector3(1,1,1));
 		objectParamsSet(new Button("Button_ship", "spr_button_ship"), new Vector3((float)-2.65, (float)-0.57, (float)-1), new Vector3(1,1,1));
@@ -176,7 +177,7 @@ public class scr_object_generating : MonoBehaviour
     public static void UninhabitedPlanetScreenGeneration(Planet planet)
     {
         //Надо бы сделать здесь расчёт положения и масштаба кнопок в зависимости от размеров камеры, чтобы всё всегда умещалось в экран
-        objectParamsSet(new OtherObects("Back_white", "spr_bkg_land_white"), new Vector3((float)0, (float)0, (float)0), new Vector3(1, 1, 1));
+        objectParamsSet(new OtherObects("Back_white", "spr_bkg_land_white"), new Vector3((float)0, (float)0, (float)0), new Vector3(2, 2, 1));
 
         objectParamsSet(new Button("Button_explore", "spr_button_explore"), new Vector3((float)-2.4, (float)1.26, (float)-1), new Vector3(1, 1, 1));
         objectParamsSet(new Button("Button_ship", "spr_button_ship"), new Vector3((float)-2.4, (float)-0.55, (float)-1), new Vector3(1, 1, 1));
@@ -188,7 +189,7 @@ public class scr_object_generating : MonoBehaviour
     {
         // target - Station or Military_base
         //Надо бы сделать здесь расчёт положения и масштаба кнопок в зависимости от размеров камеры, чтобы всё всегда умещалось в экран
-        objectParamsSet(new OtherObects("Back_white", "spr_bkg_land_white"), new Vector3((float)0, (float)0, (float)0), new Vector3(1, 1, 1));
+        objectParamsSet(new OtherObects("Back_white", "spr_bkg_land_white"), new Vector3((float)0, (float)0, (float)0), new Vector3(2, 2, 1));
         if (target == "Station")
         {
             objectParamsSet(new Button("Button_quests", "spr_button_quests"), new Vector3((float)-2.65, (float)1.59, (float)-1), new Vector3(1, 1, 1));

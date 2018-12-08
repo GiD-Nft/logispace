@@ -18,6 +18,10 @@ public class Control // Класс для глобальных переменн�
     public static List<GameObject> space_objects_for_action; // Список космических объектов для различных действий - активации/деактивации
     public static List<GameObject> planet_objects_for_action; // Список планетарных объектов для различных действий, например уничтожения
 
+    public static float spaceCameraSize = 2.552733f; // Размер камеры в космосе
+    public static float landCameraSize = 3.637849f; // Размер камеры при приземлении
+    public static bool isCameraDraggable = false; // Разрешить или запретить перетаскивание камеры (например на планетах - запретить)
+
     public static void SpaceObjectsActivate(bool active) //Так как окно планеты появляется поверх космического, надо деактивировать объекты космоса.
     {
 
@@ -80,6 +84,13 @@ public class Control // Класс для глобальных переменн�
 			}
 		}
     }
+
+    public static void setLandCameraSize(bool isLand) // Устанавливаем размеры камеры. isLand true - камера для планеты, false - для космоса
+    {
+        if (isLand)
+            Camera.main.orthographicSize = Control.landCameraSize;
+        else Camera.main.orthographicSize = Control.spaceCameraSize;
+    }
 }
 
 
@@ -116,10 +127,14 @@ public class scr_main : MonoBehaviour
 
         Control.borders = new Vector4(size.x / 100 / -2, size.y / 100 / -2, size.x / 100 / 2, size.y / 100 / 2);
 
+        Control.isCameraDraggable = true;
+
 		Control.currentSystemStatus = "border";
         scr_object_generating.PlanetAreaObjectGeneration(); //Вызываем метод создания объектов космоса
-		scr_object_generating.AlienShipObjectGeneration();
-        scr_object_generating.PirateShipObjectGeneration();
+        for (int i = 0; i < Random.Range(2, 5); i++)
+            scr_object_generating.AlienShipObjectGeneration();
+        for (int i = 0; i < Random.Range(2, 5); i++)
+            scr_object_generating.PirateShipObjectGeneration();
 
 		obj_players_ship = GameObject.Find("Players_ship").GetComponent<Transform>();
         Debug.Log("Горит красный свет. Все стоят (Нажмите Play)");
@@ -163,6 +178,8 @@ public class scr_main : MonoBehaviour
 					Debug.Log ("Взлёт");
                     Control.PlanetObjectsAction("destroy");
                     Control.SpaceObjectsActivate(true);
+                    Control.isCameraDraggable = true;
+                    Control.setLandCameraSize(false);
                 }
 				else if (rayHit.transform.name == "Button_explore")
 				{
