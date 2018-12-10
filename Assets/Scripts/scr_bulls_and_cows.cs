@@ -7,8 +7,8 @@ using System.Text;
 
 
 public class scr_bulls_and_cows : MonoBehaviour {
-    public string textField = "1234";
-    public static string textAreaString = "Игрок";
+    public string textField = "";
+    public static string textAreaString = "Компьютер";
     public static ArrayList list = new ArrayList();
     public static int count = 0;
     public int bull = 0;
@@ -18,15 +18,16 @@ public class scr_bulls_and_cows : MonoBehaviour {
     public bool userWin = false;
     public bool comWin = false;
     public int ansint;
-    public bool turn = false;
+    public bool check1 = true;
     string number;
-    public static string textAreaComp;
+    public static string textAreaComp = "Игрок";
+
     // Use this for initialization
     void Start () 
     {
         list = GenerateList();
         userList = GenerateList();
-        writeToUser("Write ur number");
+        writeToUser("Напишите свое число, и нажмите кнопку Задать число");
         ansint = GenerateNumberFromList();
     }
 
@@ -50,10 +51,15 @@ public class scr_bulls_and_cows : MonoBehaviour {
 
         textAreaString = GUI.TextArea(new Rect(640, 25, 300, 280), textAreaString);
         textAreaComp = GUI.TextArea(new Rect(10, 25, 300, 280), textAreaComp);
-        if (GUI.Button(new Rect(425, 100, 100, 30), "Задать число")) {
-             number = textField;
+        if (check1 && GUI.Button(new Rect(425, 100, 100, 30), "Задать число")) {
+            writeToUser("Ваше число теперь = " + textField);
+            number = textField;
+            check1 = false;
+            textField = "";
+            writeToUser("Напишите 4 значное число в поле по центру, и нажмите угадать чтоб сделать ход");
+
         }
-            
+
         if (GUI.Button(new Rect(425, 150, 100, 30), "Угадать"))
         {
             //Console.WriteLine(ansint);
@@ -65,13 +71,14 @@ public class scr_bulls_and_cows : MonoBehaviour {
             ans[3] = ansint % 10;
             UserGame(ans, textField); // тут заменить Console.ReadLine на число пользоваеля которое он вводит чтоб угадать
             Game(number); // Тут вызывается хо компа
+            textField = "";
         }
     }
-    public static void writeToUser(string text) {
+    public static void writeToCom(string text) {
         textAreaString = textAreaString + "\n" + text;
     }
 
-    public static void writeToComp(string text)
+    public static void writeToUser(string text)
     {
         textAreaComp = textAreaComp + "\n" + text;
     }
@@ -107,14 +114,14 @@ public class scr_bulls_and_cows : MonoBehaviour {
         }
         ArrayList ab = new ArrayList();
         ab = GetAB(Convert.ToInt32(userNumber), Convert.ToInt32(compGuess));
-        writeToUser("comp guess = " + compGuess);
-        writeToUser("Bulls = " + ab[0]);
+        writeToCom("Компьютер загадал число = " + compGuess);
+        writeToCom("В вашем числе быков = " + ab[0]);
         int bull = (int)ab[0]; // Количество быков которые угадал комп
-        writeToUser("Cows = " + ab[1]);
+        writeToCom("В вашем числе коров = " + ab[1]);
         int cow = (int)ab[1]; // Количество коров которые угадал комп
         if (bull == 4 && cow == 0)
         {
-            writeToUser("Comupter Win! Your secret number is " + compGuess);
+            writeToCom("Вы проиграли, враги теперь могут свободно уничтожить вашу планету " + compGuess);
             return true; // Комп победил
         }
 
@@ -128,25 +135,25 @@ public class scr_bulls_and_cows : MonoBehaviour {
                 compGuess = '0' + compGuess;
             }
             ab = GetAB(Convert.ToInt32(userNumber), Convert.ToInt32(compGuess));
-            writeToUser("comp guess = " + compGuess);
-            writeToUser("Bulls = " + ab[0]);
+            writeToCom("Компьютер загадал число = " + compGuess);
+            writeToCom("В вышем числе быков = " + ab[0]);
             int a = (int)ab[0];
-            writeToUser("Cows = " + ab[1]);
+            writeToCom("В вашем числе коров = " + ab[1]);
             int b = (int)ab[1];
             if (a != 4 || b != 0)
             {
-                writeToUser("You must type something wrong, try again...");
+                writeToCom("Вы что-то ввели неправильно, попробуйте еще раз...");
             }
             else if (a == 4 && b == 0)
             {
-                writeToUser("Your secret number is " + compGuess);
+                writeToCom("Твое число = " + compGuess);
                 return true;
             }
             return true;
         }
         else if (list.Count == 0)
         {
-            writeToUser("You must type something wrong, try again...");
+            writeToCom("Вы что-то ввели неправильно, попробуйте еще раз...");
             return true;
         }
         else
@@ -157,10 +164,8 @@ public class scr_bulls_and_cows : MonoBehaviour {
 
     public static bool UserGame(int[] ans, string guess)
     {
-        Debug.Log("WORK!!!!!!!!");
         userCount++;
-        writeToComp("");
-        writeToComp("Guess a four digit number");
+        writeToUser("Вы ввели число = " + guess);
 
         char[] guessed = guess.ToCharArray();
         int bullsCount = 0;
@@ -168,7 +173,7 @@ public class scr_bulls_and_cows : MonoBehaviour {
 
         if (guessed.Length != 4 || (guessed[0] == guessed[1] || guessed[0] == guessed[2] || guessed[0] == guessed[3]) || guessed[1] == guessed[2] || guessed[1] == guessed[3] || guessed[2] == guessed[3])
         {
-            writeToComp("Not a valid guess. Try again");
+            writeToUser("Вы что-то ввели неправильно, попробуйте еще раз...");
             return false;
         }
 
@@ -188,12 +193,12 @@ public class scr_bulls_and_cows : MonoBehaviour {
 
         if ((int)ab[0] == 4)
         {
-            writeToComp("Congratulations! You have won!");
+            writeToUser("Мои поздравления! Вы победили врага, ваша планета может гордиться вами.");
             return true;
         }
         else
         {
-            writeToComp((int)ab[0]+ " bulls and " + (int)ab[1] + " cows");
+            writeToUser((int)ab[0]+ " быков, и " + (int)ab[1] + " коров");
             return false;
         }
     }
