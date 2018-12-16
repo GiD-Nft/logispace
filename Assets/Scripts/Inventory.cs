@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory
+[CreateAssetMenu(menuName = "Inventory")]
+public class Inventory : ScriptableObject
 {
-    private List<Item> inventory;
+    public List<Item> inventory;
 
     public Inventory()
     {
         this.inventory = new List<Item>();
+    }
+
+    public List<Item> getItems()
+    {
+        return inventory;
     }
 
     public void AddItem(Item item)
