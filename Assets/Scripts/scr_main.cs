@@ -7,6 +7,7 @@ public class Control // Класс для глобальных переменн�
     public static bool playerNeedToFly = false; // Когда она true - корабль игрока готовится лететь
     public static Vector2 playerVectorTarget; // Точка, в которую должен полететь корабль игрока
     public static string playerTargetName; // Название объекта, к которому летит игрок. Нужно для посадки в скрипте scr_player_ship метод SpaceshipMovement
+    public static int playerMoney = 10000;  //Баланс игрока в unc
     public static bool buttonPlay = false; // Состояние кнопки btn_play. Если false - все стоят, если true - двигаются
 	public static string currentSystemStatus; // Состояние текущей системы. {Принадлежит пришельцам; Пограничная; Принадлежит людям} (alien, border, human)
     public static int currentPlanetIndex = 3; //Порядковый номер текущей планеты
@@ -129,7 +130,20 @@ public class scr_main : MonoBehaviour
 
         Control.isCameraDraggable = true;
 
-		Control.currentSystemStatus = "border";
+        //Заполнение дефолтного инвентаря
+        /*
+        Control.defaultInventory.AddItem(new Item("Корпус", "Ацтек", "Скорость: 2, Кол-во членов экипажа: 5", 1000));
+        Control.defaultInventory.AddItem(new Item("Корпус", "Стелла", "Скорость: 3, Кол-во членов экипажа: 4", 1300));
+        Control.defaultInventory.AddItem(new Item("Корпус", "Центурия", "Скорость: 1,5, Кол-во членов экипажа: 7", 1500));
+        Control.defaultInventory.AddItem(new Item("Оружие", "AG-700M", "Урон + 10", 400));
+        Control.defaultInventory.AddItem(new Item("Оружие", "APS-12", "Урон + 20", 900));
+        Control.defaultInventory.AddItem(new Item("Защитная обшивка", "Dp-R5", "Броня + 5", 800));
+        Control.defaultInventory.AddItem(new Item("Защитная обшивка", "Dp-R9", "Броня + 9", 1500));
+        Control.defaultInventory.AddItem(new Item("Генератор защитного поля", "Dp-Z1", "Длина числа + 1", 1000));
+        Control.defaultInventory.AddItem(new Item("Генератор защитного поля", "Dp-Z2", "Длина числа + 2", 2400));
+        Control.defaultInventory.AddItem(new Item("Артефакты", "Ионный анализатор поля", "Указывает где бык а где корова при угадывании", 10000));
+        */
+        Control.currentSystemStatus = "border";
         scr_object_generating.PlanetAreaObjectGeneration(); //Вызываем метод создания объектов космоса
         for (int i = 0; i < Random.Range(2, 5); i++)
             scr_object_generating.AlienShipObjectGeneration();
@@ -201,7 +215,19 @@ public class scr_main : MonoBehaviour
                 else if (rayHit.transform.tag == "OnPlanetButton")
                 {
                     Control.PlanetObjectsAction("deactivate");
-                    scr_object_generating.OnPlanetButtonClick(new Button(rayHit.transform.name, "spr_"+ rayHit.transform.name.ToLower()));
+
+                    switch (rayHit.transform.name)
+                    {
+                        case "Button_shop":
+                            GameObject.Find("Canvas").GetComponent<ShopPanel>().OpenShop();
+                            break;
+                        case "Button_ship":
+                            GameObject.Find("Canvas").GetComponent<ShopPanel>().OpenPlayerInventory();
+                            break;
+                        default:
+                            scr_object_generating.OnPlanetButtonClick(new Button(rayHit.transform.name, "spr_" + rayHit.transform.name.ToLower()));
+                            break;
+                    }
                 }
 
             }

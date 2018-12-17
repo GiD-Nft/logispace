@@ -214,8 +214,7 @@ public class scr_object_generating : MonoBehaviour
     {
         //Надо бы сделать здесь расчёт положения и масштаба кнопок в зависимости от размеров камеры, чтобы всё всегда умещалось в экран
         //objectParamsSet(new OtherObects("Back_white_onPlanet", "spr_bkg_land_white"), new Vector3((float)0, (float)0, (float)-2), new Vector3(1, 1, 1));
-        
-
+     
         objectParamsSet(new Planet("Header_onPlanet", button.SpriteName), new Vector3((float)0, (float)2.3, (float)-1), new Vector3(1, 1, 1));
         objectParamsSet(new Button("Button_back", "spr_button_back"), new Vector3((float)0, (float)-2.3, (float)-1), new Vector3(1, 1, 1));
     }
@@ -340,7 +339,8 @@ public class scr_object_generating : MonoBehaviour
             case "Back_white":
                 current_obj.tag = "OnPlanetBackground";
                 break;
-            case "Back_planetpic": case "Header_planetname":
+            case "Back_planetpic":
+            case "Header_planetname":
                 current_obj.tag = "OnPlanetOther";
                 break;
 			case "Aliens_ship":
@@ -357,14 +357,24 @@ public class scr_object_generating : MonoBehaviour
         var rigidbodyComponent = current_obj.AddComponent<Rigidbody2D>();
         rigidbodyComponent.gravityScale = 0;
 
-		if (logispaceObject.Name != "Players_ship" && logispaceObject.Name != "Back_white" && logispaceObject.Name != "Back_planetpic" && logispaceObject.Name != "Header_planetname") // У этих объектов нет коллайдеров. Мб сделать их isTrigger 
+		if (logispaceObject.Name != "Players_ship" && logispaceObject.Name != "Back_white" 
+            && logispaceObject.Name != "Back_planetpic" && logispaceObject.Name != "Header_planetname") // У этих объектов нет коллайдеров. Мб сделать их isTrigger 
 		{
-			var circleCollider = current_obj.AddComponent<CircleCollider2D>();
-        	//circleCollider.radius = (float)1.54; // Сюда вставить высоту спрайта
-            circleCollider.radius = spriteComponent.sprite.rect.height/200;
+            if (current_obj.tag == "OnPlanetButton" || current_obj.tag == "OnPlanetButton2")
+            {
+                var boxCollider = current_obj.AddComponent<BoxCollider2D>();
 
-			//if (logispaceObject.objectType == "Button")
-				circleCollider.isTrigger = true;
+                boxCollider.isTrigger = true;
+            }
+            else
+            {
+                var circleCollider = current_obj.AddComponent<CircleCollider2D>();
+                //circleCollider.radius = (float)1.54; // Сюда вставить высоту спрайта
+                circleCollider.radius = spriteComponent.sprite.rect.height / 200;
+
+                //if (logispaceObject.objectType == "Button")
+                circleCollider.isTrigger = true;
+            }
 		}
 			
         current_obj.transform.position = objPosition;
